@@ -17,9 +17,11 @@ import java.net.UnknownHostException;
  * @author manuel
  */
 public abstract class Extender extends Computer {
-
-    public Extender(String address) {
+    String user;
+    
+    public Extender(String address, String user) {
         super(address);
+        this.user=user;
     }
 
     public void sendRemoteSayMessage(String message) {

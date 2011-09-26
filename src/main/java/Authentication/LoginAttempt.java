@@ -14,10 +14,14 @@ import java.util.logging.Logger;
  * @author manuel
  */
 public class LoginAttempt {
-    String hash;
+    private String hash;
+    private String user;
+    private String time;
     public LoginAttempt(String username, String password){
+        this.user=username;
         try {
-            hash = MD5.hash(username+password+Time.Time.getTimeStamp());
+            time=Time.Time.getTimeStamp();
+            hash = MD5.hash(username+password+time);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginAttempt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedEncodingException ex) {
@@ -30,11 +34,14 @@ public class LoginAttempt {
             return false;
         }
     }
+    public String getUsername(){
+        return user;
+    }
+    public String getTimeStamp(){
+        return time;
+    }
     public String getHash(){
         return hash;
     }
-    public boolean checkLogin(String user, String pass){
-        LoginAttempt l=new LoginAttempt(user, pass);
-        return l.checkHash(hash);
-    }
+    
 }

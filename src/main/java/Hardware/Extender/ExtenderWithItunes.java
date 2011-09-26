@@ -15,8 +15,8 @@ import java.net.InetAddress;
  * @author manuel
  */
 public class ExtenderWithItunes extends Extender implements ItunesControl{
-    public ExtenderWithItunes(String address){
-        super(address);
+    public ExtenderWithItunes(String address, String user){
+        super(address,user);
     }
     
     public void play() {
