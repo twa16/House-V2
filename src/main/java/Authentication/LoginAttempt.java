@@ -15,10 +15,10 @@ import java.util.logging.Logger;
  */
 public class LoginAttempt {
     private String hash;
-    private String user;
+    private User user;
     private String time;
-    public LoginAttempt(String username, String password){
-        this.user=username;
+    public LoginAttempt(User user, String password){
+        String username=this.user.getUserName();
         try {
             time=Time.Time.getTimeStamp();
             hash = MD5.hash(username+password+time);
@@ -35,7 +35,7 @@ public class LoginAttempt {
         }
     }
     public String getUsername(){
-        return user;
+        return user.getUserName();
     }
     public String getTimeStamp(){
         return time;

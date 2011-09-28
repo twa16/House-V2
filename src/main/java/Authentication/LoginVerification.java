@@ -12,11 +12,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Utilities to verify login information from 
+ * {@link LoginAttempt} object.
  * @author manuel
  */
 public class LoginVerification {
 
+    /**
+     * Verifies login information contained in {@link LoginAttempt}
+     * object
+     * @param la LoginAttempt containing login data
+     * @param conn Connection to MYSQL
+     * @return boolean true if login is correct
+     */
     public static boolean checkLogin(LoginAttempt la, Connection conn) {
         String username=la.getUsername();
         String time=la.getTimeStamp();

@@ -17,7 +17,7 @@
   <repositories>	
     <repository>	
       <id>mgmvn</id>	
-      <url>http://192.168.1.1:8081/nexus/content/repositories/mgmvn</url>
+      <url>http://servers.manuwebdev.com:8081/nexus/content/repositories/mgmvn</url>
     </repository>	
   </repositories>
   
