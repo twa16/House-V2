@@ -4,7 +4,7 @@
  */
 package Authentication.Server;
 
-import Authentication.LoginAttempt;
+import com.manuwebdev.mirageobjectlibrary.Authentication.LoginAttempt;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

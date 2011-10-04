@@ -5,6 +5,8 @@
 package Authentication;
 
 import Database.UsersSQL;
+import com.manuwebdev.mirageobjectlibrary.Authentication.LoginAttempt;
+import com.manuwebdev.mirageobjectlibrary.Authentication.MD5;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
