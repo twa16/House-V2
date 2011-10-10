@@ -26,9 +26,6 @@ public class Main {
         //Configuration Initialization
         Configuration config = new Configuration(args[0]);
         
-        //Console Initialization
-        initConsole();
-        
         //MYSQL Server
         MYSQLServer mysql=new MYSQLServer(config);
         mysql.connect();
@@ -37,6 +34,9 @@ public class Main {
         Connection conn=mysql.getSQLConnection();
         AuthenticationServer authsvr=new AuthenticationServer(AuthticationServerPort,conn);
         authsvr.start();
+        
+        //Console Initialization
+        initConsole();
     }
 
     private static void initConsole() {

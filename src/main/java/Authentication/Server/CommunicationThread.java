@@ -4,6 +4,8 @@
  */
 package Authentication.Server;
 
+import Authentication.LoginVerification;
+import Database.UsersSQL;
 import com.manuwebdev.mirageobjectlibrary.Authentication.LoginAttempt;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,11 +27,13 @@ public class CommunicationThread implements Runnable{
     Socket skt;
     ObjectInputStream ois;
     ObjectOutputStream oos;
+    Connection conn;
     public CommunicationThread(Socket skt,Connection conn){
         try {
             this.skt=skt;
             ois=new ObjectInputStream(skt.getInputStream());
             oos=new ObjectOutputStream(skt.getOutputStream());
+            this.conn=conn;
         } catch (IOException ex) {
             Logger.getLogger(CommunicationThread.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,7 +42,14 @@ public class CommunicationThread implements Runnable{
         try {
             Object o=ois.readObject();
             LoginAttempt la=(LoginAttempt)o;
-            
+            boolean OK=LoginVerification.checkLogin(la, conn);
+            if(OK){
+                oos.writeObject(UsersSQL.getUserObject(la.getUsername(), conn));
+            }
+            else{
+                oos.writeObject(null);
+            }
+            //User u=new User(la.getUsername(),);
             
         } catch (IOException ex) {
             Logger.getLogger(CommunicationThread.class.getName()).log(Level.SEVERE, null, ex);

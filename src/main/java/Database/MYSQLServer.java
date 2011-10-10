@@ -35,10 +35,23 @@ public class MYSQLServer{
     
     public void connect(){
         try {
+            System.out.println("Loading MYSQL JDBC Driver.");
+            try {
+                try {
+                    Class.forName ("com.mysql.jdbc.Driver").newInstance ();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MYSQLServer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (InstantiationException ex) {
+                Logger.getLogger(MYSQLServer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(MYSQLServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("Server URL: "+"jdbc:mysql://"+Host+":"+Port+"/"+Database);
             System.out.println("Attempting To Connect To MYSQL Server...");
             connection = DriverManager.getConnection("jdbc:mysql://"+Host+":"+Port+"/"+Database, UserName, Password);
         } catch (SQLException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.err.println("##################Unable To Connect To MYSQL##################");
         }
         try {
