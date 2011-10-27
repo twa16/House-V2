@@ -4,14 +4,12 @@
  */
 package Alarm;
 
-import com.mysql.jdbc.Connection;
-
 /**
  *
- * @author manuel
+ * @author mgauto504
  */
-public class AlarmMYSQL {
-    public static void addAlarm(Connection conn){
+public class AlarmBackend {
+    public AlarmBackend(){
         
     }
 }
