@@ -28,14 +28,17 @@ public class LoginVerification {
      * @return boolean true if login is correct
      */
     public static boolean checkLogin(LoginAttempt la, Connection conn) {
-        String username=la.getUsername();
-        String time=la.getTimeStamp();
+        String username = la.getUsername();
+        String time = la.getTimeStamp();
         String realpassword = UsersSQL.getUserPassword(username, conn);
         String hash = null;
         String hashattempt = la.getHash();
+        System.out.println(la.getHash() + "\n" + la.getUsername() + "\n" + la.getTimeStamp());
         if (realpassword != null) {
             try {
-                hash = MD5.hash(username + realpassword + time);
+                System.out.println(username + realpassword + time);
+                hash = MD5.hash(username+realpassword+time);
+                System.out.println("Actual hash: " + hash);
                 //hashattempt = MD5.hash(username + password);
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(LoginVerification.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,8 +49,9 @@ public class LoginVerification {
             if (hash.equals(hashattempt)) {
                 return true;
             }
-            if(hash==null&&hashattempt==null)return false;
+            //if(hash==null&&hashattempt==null)return false;
         } else {
+            System.out.println("User Not Found: " + username);
             return false;
         }
         return false;

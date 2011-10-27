@@ -85,6 +85,7 @@ class AuthenticationServerThread implements Runnable {
     /**
      * Thread contents
      */
+    @Override
     public void run() {
         try {
             svrskt = new ServerSocket(port);
@@ -94,6 +95,7 @@ class AuthenticationServerThread implements Runnable {
         while (true) {
             try {
                 skt = svrskt.accept();
+                System.out.println("Connection From: "+skt.getInetAddress().getHostAddress());
             } catch (IOException ex) {
                 Logger.getLogger(AuthenticationServerThread.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -44,9 +44,11 @@ public class CommunicationThread implements Runnable{
             LoginAttempt la=(LoginAttempt)o;
             boolean OK=LoginVerification.checkLogin(la, conn);
             if(OK){
+                System.err.println("Sending User Object");
                 oos.writeObject(UsersSQL.getUserObject(la.getUsername(), conn));
             }
             else{
+                System.err.println("NOT Sending User Object");
                 oos.writeObject(null);
             }
             //User u=new User(la.getUsername(),);
