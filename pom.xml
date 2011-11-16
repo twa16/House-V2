@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.manuwebdev</groupId>
             <artifactId>MirageObjectLibrary</artifactId>
-            <version>1.1-RELEASE</version>
+            <version>1.2-RELEASE</version>
         </dependency>
     </dependencies>
 </project>
