@@ -14,16 +14,48 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author manuel
+ * @author Manuel Gauto
  */
 public class MYSQLServer{
+    /**
+     * Username to login with
+     */
     static String UserName;
+    
+    /**
+     * Host Address of MYSQL server
+     */
     static String Host;
+    
+    /**
+     * Password to use
+     */
     static String Password;
+    
+    /**
+     * Port to use
+     */
     static String Port;
+    
+    /**
+     * Schema to access
+     */
     static String Database;
+    
+    /**
+     * Object representing connection to MYSQL server
+     */
     static Connection connection = null;
+    
+    /**
+     * MYSQL driver
+     */
     Class driver_class = null;
+    
+    /**
+     * 
+     * @param config 
+     */
     public MYSQLServer(Configuration config){
         System.out.println("Configuring MYSQL Server.");
         Host=config.getValue(Keys.MYSQL_SERVER);
