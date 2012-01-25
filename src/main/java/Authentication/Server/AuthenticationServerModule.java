@@ -4,28 +4,48 @@
  */
 package Authentication.Server;
 
+import Database.MYSQLModule;
 import Server.MirageModule;
+import java.sql.Connection;
 
 /**
  *
  * @author Manuel Gauto
  */
-public class AuthenticationServerModule extends MirageModule{
-    final String NAME="Authentication Server";
+public class AuthenticationServerModule extends MirageModule {
+
+    /**
+     * Name of Module
+     */
+    final String NAME = "Authentication Server";
     
+    /**
+     * Port to use
+     */
+    private static final int AuthenticationServerPort = 5700;
+
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        MYSQLModule mysql = (MYSQLModule) getServer().getModuleByName("MYSQL");
+        Connection conn = mysql.getMYSQLConnection();
+        AuthenticationServer authsvr = new AuthenticationServer(AuthenticationServerPort, conn);
+        authsvr.start();
     }
 
+    /**
+     * Returns port used by Authentication Server
+     * @return port
+     */
+    public int getPort(){
+        return AuthenticationServerPort;
+    }
+    
+    /**
+     * Get name of plugin
+     * @return 
+     */
     @Override
     public String getName() {
         return NAME;
     }
-
-    @Override
-    public void onModuleStart() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }

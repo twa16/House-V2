@@ -8,24 +8,35 @@ package Server;
  *
  * @author Manuel Gauto
  */
-abstract public class MirageModule implements Runnable{
+abstract public class MirageModule implements Runnable {
+
     Thread ModuleThread;
     
+    MirageServer Server;
+
     abstract public void execute();
+
     @Override
-    public void run(){
+    public void run() {
         execute();
     }
-    public void startModule(){
-        onModuleStart();
+
+    public void startModule(MirageServer server) {
+        this.Server=server;
+        ModuleThread = new Thread(this);
+        ModuleThread.start();
     }
-    abstract public void onModuleStart();
-    public void linkThread(Thread thread){
-        ModuleThread=thread;
+    public void linkThread(Thread thread) {
+        ModuleThread = thread;
     }
-    public Thread getModuleThread(){
+
+    public Thread getModuleThread() {
         return ModuleThread;
     }
-    abstract public String getName();
+
+    public MirageServer getServer(){
+        return Server;
+    }
     
+    abstract public String getName();
 }
