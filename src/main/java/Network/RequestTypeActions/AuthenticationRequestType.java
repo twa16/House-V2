@@ -11,7 +11,7 @@ import java.net.Socket;
  *
  * @author Manuel Gauto
  */
-public class Authentication extends RequestTypeAction{
+public class AuthenticationRequestType extends RequestTypeAction{
 
     @Override
     public boolean action(Socket Socket, String RequestType) {
